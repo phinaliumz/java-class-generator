@@ -12,7 +12,7 @@ As this extension is not (atleast yet) in VS Code Marketplace, you'll need to in
 
 First, clone this repo or download it as a zip, and move to $HOME/.vscode/extensions
 
-Then, compile the Typescript with `tsc -p ./` in the extracted folder.
+Then, compile the Typescript with `npm run install` in the extracted folder.
 
 After that, you might need to restart VS Code, and the commands should be available.
 
