@@ -1,5 +1,6 @@
 {
     "name": "java-class-generator",
+    "license": "BSD-3-Clause",
     "displayName": "java-class-generator",
     "description": "Generate skeleton Java classes",
     "version": "0.0.1",
@@ -11,14 +12,19 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.generateSkeletonJavaClass"
+        "onCommand:extension.generateSkeletonJavaClass",
+        "onCommand:extension.generateSkeletonJavaInterface"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
                 "command": "extension.generateSkeletonJavaClass",
-                "title": "Generate skeleton Java class"
+                "title": "Java: Generate skeleton class"
+            },
+            {
+                "command": "extension.generateSkeletonJavaInterface",
+                "title": "Java: Generate skeleton interface"
             }
         ]
     },
@@ -30,10 +36,10 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.21",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^8.10.26",
         "tslint": "^5.8.0",
-        "@types/node": "^8.10.25",
-        "@types/mocha": "^2.2.42"
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21"
     }
 }
