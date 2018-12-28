@@ -4,9 +4,6 @@ import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
 
-    console.log('Congratulations, your extension "java-class-generator" is now active!');
-
-
     let disposableSkeletonJavaInterfaceCommand = vscode.commands.registerCommand('extension.generateSkeletonJavaInterface', () => {
         addPublicJavaKeyWordToDocument("interface");
     });
@@ -15,8 +12,22 @@ export function activate(context: vscode.ExtensionContext) {
         addPublicJavaKeyWordToDocument("class");
     });
 
+    let disposableSkeletonJavaEnumCommand = vscode.commands.registerCommand('extension.generateSkeletonJavaEnum', () => {
+        addPublicJavaKeyWordToDocument("enum");
+    });
+
+    let disposableImplementJavaInterface = vscode.commands.registerCommand('extension.implementJavaInterface', () => {
+        implementJavaInterface();
+    });
+
     context.subscriptions.push(disposableSkeletonJavaClassCommand);
     context.subscriptions.push(disposableSkeletonJavaInterfaceCommand);
+    context.subscriptions.push(disposableSkeletonJavaEnumCommand);
+}
+
+function implementJavaInterface() {
+    let javaInterfaceImplementer = new JavaInterfaceImplementer();
+    javaInterfaceImplementer.createFileImplementingInterface("interfaceName");
 }
 
 function addPublicJavaKeyWordToDocument(javaKeyWord: string) {
@@ -54,13 +65,13 @@ function addPublicJavaKeyWordToDocument(javaKeyWord: string) {
             let lastIndexOfFileExtensionPeriod = fileName.lastIndexOf(".java");
             fileName = fileName.slice(lastIndexOfDirectorySlash, lastIndexOfFileExtensionPeriod);
         }
-        
+
         if(javaPackageName.length > 0) {
             let javaPackageText: string = `package ${ javaPackageName }; \n\n`;
             editBuilder.insert(new vscode.Position(0,0), javaPackageText);
         }
 
-        let javaClassText: string = 
+        let javaClassText: string =
             `public ${ javaKeyWord } ${ fileName } {\n\n}`;
         editBuilder.insert(new vscode.Position(0,0), javaClassText);
         return true;

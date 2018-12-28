@@ -13,7 +13,9 @@
     ],
     "activationEvents": [
         "onCommand:extension.generateSkeletonJavaClass",
-        "onCommand:extension.generateSkeletonJavaInterface"
+        "onCommand:extension.generateSkeletonJavaInterface",
+        "onCommand:extension.generateSkeletonJavaEnum",
+        "onCommand:extension.implementJavaInterface"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -25,6 +27,14 @@
             {
                 "command": "extension.generateSkeletonJavaInterface",
                 "title": "Java: Generate skeleton interface"
+            },
+            {
+                "command": "extension.generateSkeletonJavaEnum",
+                "title": "Java: Generate skeleton enum"
+            },
+            {
+                "command": "extension.implementJavaInterface",
+                "title": "Java: Implement a interface"
             }
         ]
     },
